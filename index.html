@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jesse Smith - NDIS Support Worker, Melbourne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:        #A0695F;
+      --teal:        #4A7C74;
+      --amber:       #C4933A;
+      --denim:       #3D5E7A;
+      --clay-tint:   #C4897A;
+      --teal-tint:   #7AADA6;
+      --gold-tint:   #E8C97A;
+      --bg:          #F6F0ED;
+      --text:        #2C2220;
+      --text-sec:    #8C7B6B;
+      --divider:     #E8DDD8;
+      --white:       #FDFAF8;
+
+      --ff-head: 'Fraunces', Georgia, serif;
+      --ff-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 72px 0; }
+    section + section { border-top: 1px solid var(--divider); }
+
+    /* ── Type ── */
+    h1 {
+      font-family: var(--ff-head);
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    h1 em { font-style: italic; color: var(--clay); }
+
+    h2 {
+      font-family: var(--ff-head);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    h3 {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-sec);
+      margin-bottom: 32px;
+    }
+
+    p { max-width: 65ch; text-wrap: pretty; }
+    p + p { margin-top: 16px; }
+
+    a { color: var(--clay); text-underline-offset: 3px; }
+    a:hover { color: var(--teal); }
+    a:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 2px; }
+
+    /* ── Header / hero ── */
+    .hero {
+      padding: 80px 0 72px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .hero-intro {
+      margin-top: 32px;
+      font-size: 1.125rem;
+      color: var(--text);
+      max-width: 58ch;
+      text-wrap: pretty;
+    }
+
+    .hero-tags {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--divider);
+      font-size: 0.875rem;
+      color: var(--text-sec);
+      background: transparent;
+    }
+    .tag--clay   { border-color: var(--clay-tint);  color: var(--clay); }
+    .tag--teal   { border-color: var(--teal-tint);  color: var(--teal); }
+    .tag--amber  { border-color: var(--gold-tint);  color: #96700B; }
+
+    /* ── Services ── */
+    .services-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+    .service-card:focus-within { border-color: var(--clay); }
+
+    .service-summary-btn {
+      width: 100%;
+      text-align: left;
+      padding: 24px 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      color: inherit;
+      font-family: var(--ff-body);
+    }
+    .service-summary-btn:focus-visible {
+      outline: 2px solid var(--clay);
+      outline-offset: -2px;
+      border-radius: 8px;
+    }
+
+    .service-title {
+      font-family: var(--ff-head);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .service-blurb {
+      font-size: 0.9375rem;
+      color: var(--text-sec);
+      line-height: 1.6;
+      max-width: 56ch;
+      text-wrap: pretty;
+    }
+
+    .expand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: background 0.15s, border-color 0.15s, transform 0.25s;
+      color: var(--text-sec);
+    }
+    .service-card.open .expand-icon {
+      background: var(--clay);
+      border-color: var(--clay);
+      color: white;
+      transform: rotate(45deg);
+    }
+
+    .service-detail {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s;
+      opacity: 0;
+    }
+    .service-card.open .service-detail {
+      opacity: 1;
+    }
+
+    .service-detail-inner {
+      padding: 0 28px 24px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .detail-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 12px;
+      margin-top: 20px;
+    }
+
+    .detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .detail-list li {
+      font-size: 0.9375rem;
+      color: var(--text);
+      padding-left: 18px;
+      position: relative;
+      text-wrap: pretty;
+    }
+    .detail-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--clay-tint);
+    }
+
+    /* ── Approach section ── */
+    .approach-body { font-size: 1.0625rem; }
+    .approach-body p { max-width: 60ch; }
+
+    /* ── Practical info ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--divider);
+    }
+
+    @media (max-width: 540px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    .info-cell {
+      background: var(--white);
+      padding: 22px 24px;
+    }
+    .info-cell-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-sec);
+      margin-bottom: 6px;
+    }
+    .info-cell-value {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .info-cell-value strong {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── What I don't do ── */
+    .limits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .limits-list li {
+      font-size: 1rem;
+      color: var(--text);
+      padding-left: 20px;
+      position: relative;
+    }
+    .limits-list li::before {
+      content: '×';
+      position: absolute;
+      left: 0;
+      color: var(--text-sec);
+      font-weight: 500;
+    }
+
+    /* ── Contact ── */
+    .contact-block {
+      background: var(--clay);
+      border-radius: 12px;
+      padding: 48px 40px;
+      color: var(--white);
+    }
+    .contact-block h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .contact-block p {
+      color: rgba(253,250,248,0.85);
+      font-size: 1.0625rem;
+      max-width: 52ch;
+    }
+    .contact-link {
+      display: inline-block;
+      margin-top: 28px;
+      background: var(--white);
+      color: var(--clay);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .contact-link:hover {
+      background: var(--bg);
+      color: var(--clay);
+    }
+    .contact-link:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      padding: 32px 0 48px;
+      font-size: 0.875rem;
+      color: var(--text-sec);
+    }
+    .site-footer a { color: var(--text-sec); }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--clay);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      z-index: 100;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ── Divider accent ── */
+    .section-accent {
+      width: 32px;
+      height: 3px;
+      background: var(--clay);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-name {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text-sec);
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--clay); }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+      .hero { padding: 56px 0 56px; }
+      section { padding: 52px 0; }
+      .contact-block { padding: 36px 24px; }
+      .service-summary-btn { padding: 20px 20px; }
+      .service-detail-inner { padding: 0 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="container">
+    <nav class="site-nav" aria-label="Site navigation">
+      <a href="#" class="nav-name">Jesse Smith</a>
+      <ul class="nav-links">
+        <li><a href="#services">What I do</a></li>
+        <li><a href="#approach">My approach</a></li>
+        <li><a href="#practical">Practical info</a></li>
+        <li><a href="#contact">Get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="main">
+    <div class="container">
+
+      <!-- ── Hero ── -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-eyebrow">NDIS Support Worker · Melbourne</div>
+        <h1 id="hero-heading">Support that fits<br><em>how your brain works.</em></h1>
+        <p class="hero-intro">
+          I'm Jesse. I'm a support worker based in Melbourne's north. I work with disabled adults who want support that fits how their brain, lifestyles and interests work.
+        </p>
+        <p class="hero-intro">
+          🧠 Proudly neurodivergent | 🌈 Proudly queer
+        </p>
+        <div class="hero-tags" aria-label="Key things about my practice">
+          <span class="tag tag--clay">Neuroaffirming</span>
+          <span class="tag tag--teal">Trans &amp; LGBTQIA+ affirming</span>
+          <span class="tag tag--amber">Self-managed &amp; plan-managed</span>
+          <span class="tag">Adults 18+</span>
+          <span class="tag">Coburg / Preston &amp; surrounds</span>
+        </div>
+      </section>
+
+      <!-- ── Services ── -->
+      <section id="services" aria-labelledby="services-heading">
+        <h3>What I can help with</h3>
+        <h2 id="services-heading">Areas of support</h2>
+        <p style="margin-bottom: 36px; color: var(--text-sec); font-size: 0.9375rem;">Each section has a brief summary. Click or tap to read more detail if you want specifics before reaching out.</p>
+
+        <div class="services-grid" id="services-list">
+
+          <div class="service-card" id="card-home">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-home"
+              onclick="toggleCard('card-home', 'detail-home', this)"
+            >
+              <div>
+                <div class="service-title">Getting things done at home</div>
+                <div class="service-blurb">Cooking, cleaning, laundry, organising. I can do this for you or alongside you in a way that builds your skills and confidence over time.
+                  If it suits your goals better for me to handle this for you, I can do that instead.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-home" role="region" aria-labelledby="card-home-title" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Meal planning, prep and cooking. Making meals in bulk, or just one meal. From scratch or from packet, whatever works for you.</li>
+                  <li>Cleaning and tidying, including planning it out in manageable chunks.</li>
+                  <li>Laundry, dishes, bins - the ongoing stuff that piles up.</li>
+                  <li>Organising spaces - cupboards, paperwork piles, storage.</li>
+                  <li>Building routines and systems that suit how you want to live.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-exec">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-exec"
+              onclick="toggleCard('card-exec', 'detail-exec', this)"
+            >
+              <div>
+                <div class="service-title">Executive function and the hard stuff to start</div>
+                <div class="service-blurb">Body doubling, task initiation, breaking things down, managing overwhelm, building routines that work for your brain. This is where I spend most of my time with most clients.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-exec" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Body doubling — being present while you work on things you can't start alone.</li>
+                  <li>Task initiation support for things that feel impossible to begin.</li>
+                  <li>Breaking overwhelming tasks into steps you feel confident to work on.</li>
+                  <li>Identifying patterns in what blocks you and working around them</li>
+                  <li>Building routines that account for your energy levels and sensory needs</li>
+                  <li>Managing overwhelm in the moment without judgment</li>
+                  <li>Helping you figure out tools, apps, or strategies that might help (without overwhelming you with options)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-admin">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-admin"
+              onclick="toggleCard('card-admin', 'detail-admin', this)"
+            >
+              <div>
+                <div class="service-title">Admin, paperwork, and the phone calls you've been avoiding</div>
+                <div class="service-blurb">Government forms, NDIS paperwork, bills, emails, Centrelink — anything that lives in a pile you haven't touched. I can sit with you while you do it, or take the lead where that's more helpful.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-admin" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>NDIS plan reviews and service agreement paperwork</li>
+                  <li>Centrelink and MyGov — navigating the system together</li>
+                  <li>Bills and financial admin that's stacked up</li>
+                  <li>Drafting or responding to emails that feel too hard</li>
+                  <li>Making phone calls on your behalf or alongside you</li>
+                  <li>Medical appointments — booking, reminders, following up referrals</li>
+                  <li>Dealing with anything official that's been sitting untouched</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-out">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-out"
+              onclick="toggleCard('card-out', 'detail-out', this)"
+            >
+              <div>
+                <div class="service-title">Getting out and about</div>
+                <div class="service-blurb">Appointments, community activities, the gym, social outings, navigating unfamiliar environments or sensory-heavy spaces.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-out" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Transport support — accompanying you on public transport or by car</li>
+                  <li>Medical and allied health appointments</li>
+                  <li>Community activities, groups, or events you want to try</li>
+                  <li>The gym, pools, parks — physical activity you want support with</li>
+                  <li>Navigating new or unfamiliar environments before you go alone</li>
+                  <li>Sensory-heavy spaces — planning ahead, having an exit strategy, managing in the moment</li>
+                  <li>Social outings where having someone with you makes the difference</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-tech">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-tech"
+              onclick="toggleCard('card-tech', 'detail-tech', this)"
+            >
+              <div>
+                <div class="service-title">Technology and communication</div>
+                <div class="service-blurb">Setting up systems, apps, devices, AAC tools, organising your digital life. Confident with any kind of tech and can help you use tools that actually suit you.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-tech" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Setting up phones, tablets, computers — getting them working for you</li>
+                  <li>AAC (Augmentative and Alternative Communication) device setup and support</li>
+                  <li>Finding and setting up apps that help with organisation, communication, or focus</li>
+                  <li>Sorting out email, calendars, reminders — systems that actually stick</li>
+                  <li>Digital decluttering — photos, files, inboxes</li>
+                  <li>Troubleshooting things that aren't working</li>
+                  <li>Teaching tech in a way that makes sense to you, not just how it's "supposed" to work</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-work">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-work"
+              onclick="toggleCard('card-work', 'detail-work', this)"
+            >
+              <div>
+                <div class="service-title">Employment and study</div>
+                <div class="service-blurb">Job searching, resume writing, interview prep, navigating workplaces, attending uni or TAFE, understanding your rights. Particularly useful if you're figuring out work for the first time or trying again after things didn't go well.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-work" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Resume writing and job applications</li>
+                  <li>Interview preparation — including managing nerves and masking fatigue</li>
+                  <li>Navigating workplace culture, communication, and expectations</li>
+                  <li>Understanding disability disclosure and your rights at work</li>
+                  <li>Attending uni, TAFE, or training — going with you if that helps</li>
+                  <li>Applying for reasonable adjustments or accessibility supports</li>
+                  <li>Processing and planning after jobs or placements that didn't work out</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card" id="card-wellbeing">
+            <button
+              class="service-summary-btn"
+              aria-expanded="false"
+              aria-controls="detail-wellbeing"
+              onclick="toggleCard('card-wellbeing', 'detail-wellbeing', this)"
+            >
+              <div>
+                <div class="service-title">Emotional support and wellbeing</div>
+                <div class="service-blurb">A steady, non-judgmental presence. Not a therapist, but understands regulation, burnout, and what it's like when things are hard.</div>
+              </div>
+              <div class="expand-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              </div>
+            </button>
+            <div class="service-detail" id="detail-wellbeing" role="region" hidden>
+              <div class="service-detail-inner">
+                <div class="detail-label">Specifics</div>
+                <ul class="detail-list">
+                  <li>Being a steady, consistent presence — someone reliable to check in with</li>
+                  <li>Supporting regulation when things feel like too much</li>
+                  <li>Understanding autistic and ADHD burnout and how to work with it</li>
+                  <li>Not pushing through if you're not up to what was planned — flexibility matters</li>
+                  <li>Helping you identify what you need without having to explain yourself from scratch every time</li>
+                  <li>Not a replacement for mental health support, but a complement to it</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Approach ── -->
+      <section id="approach" aria-labelledby="approach-heading">
+        <h3>How I work</h3>
+        <h2 id="approach-heading">My approach</h2>
+        <div class="approach-body">
+          <p>I practise neuroaffirmingly — which means I'm not trying to make you seem more neurotypical, more socially palatable, or more manageable. I'm working with how you actually are, on the days you actually have. That includes bad days, no-words days, can't-leave-the-house days. None of that is a problem to fix.</p>
+          <p>I'm trans-affirming and LGBTQIA+ inclusive. I'll use your correct name and pronouns without being asked twice, I'm familiar with the way disability and queer identities can intersect, and you don't need to explain or justify yourself to me.</p>
+          <p>I bring some of my own neurodivergent experience to this work. I have ADHD and I move in autistic communities. I'm not claiming shared experience is the same as yours — but I genuinely understand a lot of what you might be navigating, and I'm not going to look at you like you need to explain why something is hard.</p>
+          <p>I'm flexible and low-pressure. Life is irregular, especially when you're disabled. Rescheduling is okay with reasonable notice — I'd rather you tell me you're struggling than push through something that's not working. I'll always be honest if something isn't working from my side too.</p>
+          <p>I'm also honest about what I can't do. I don't provide hands-on personal care, clinical or health-related support, or work with people under 18. I'll always tell you clearly if something is outside my scope rather than take the work and do it badly.</p>
+        </div>
+      </section>
+
+      <!-- ── Practical ── -->
+      <section id="practical" aria-labelledby="practical-heading">
+        <h3>The details</h3>
+        <h2 id="practical-heading">Practical information</h2>
+        <div class="info-grid" role="list">
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Hourly rate</div>
+            <div class="info-cell-value"><strong>$70.23/hr</strong><br>Standard weekday daytime rate (NDIS price guide). Weekend and evening rates available — just ask.</div>
+          </div>
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Funding types</div>
+            <div class="info-cell-value">Works with <strong>self-managed</strong> and <strong>plan-managed</strong> participants. Not a registered NDIS provider.</div>
+          </div>
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Invoicing</div>
+            <div class="info-cell-value">Invoices sent after each session. No upfront payment or complicated setup required.</div>
+          </div>
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Location</div>
+            <div class="info-cell-value">Based in <strong>Coburg</strong>. Happy to travel across Melbourne's north and inner suburbs. Parking and transport costs agreed in advance where applicable.</div>
+          </div>
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Cancellations</div>
+            <div class="info-cell-value">2 clear business days notice is appreciated where possible. Genuine bad days happen — talk to me and we'll work something out.</div>
+          </div>
+
+          <div class="info-cell" role="listitem">
+            <div class="info-cell-label">Who I work with</div>
+            <div class="info-cell-value">Adults 18 and over. Unregistered provider — suitable for self-managed and plan-managed plans only.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── What I don't do ── -->
+      <section id="limits" aria-labelledby="limits-heading">
+        <h3>Good to know</h3>
+        <h2 id="limits-heading">What I don't do</h2>
+        <p style="margin-bottom: 24px;">It's worth knowing upfront so you can find the right person if I'm not it.</p>
+        <ul class="limits-list">
+          <li>Hands-on personal care — showering, dressing, continence support</li>
+          <li>Clinical or health-related supports</li>
+          <li>Overnight or residential (SIL) shifts</li>
+          <li>Work with people under 18</li>
+        </ul>
+      </section>
+
+      <!-- ── Contact ── -->
+      <section id="contact" aria-labelledby="contact-heading" style="padding-bottom: 0; border-top: none;">
+        <div class="contact-block">
+          <h2 id="contact-heading">Get in touch</h2>
+          <p>If any of this sounds like what you're looking for, I'd love to hear from you. No pressure, no lengthy intake process — just a conversation to see if we're a good fit.</p>
+          <a href="/cdn-cgi/l/email-protection#b2d8d7c1c1d7f2d7cad3dfc2ded79cd1dddf9cd3c7" class="contact-link">Email Jesse</a>
+        </div>
+      </section>
+
+    </div><!-- /container -->
+
+    <div class="container">
+      <footer class="site-footer">
+        <p>Jesse Smith · NDIS Support Worker · Melbourne, VIC · Sole trader, unregistered provider</p>
+      </footer>
+    </div>
+  </main>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function toggleCard(cardId, detailId, btn) {
+      const card = document.getElementById(cardId);
+      const detail = document.getElementById(detailId);
+      const isOpen = card.classList.contains('open');
+
+      if (isOpen) {
+        // Close
+        card.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        detail.style.maxHeight = detail.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          detail.style.maxHeight = '0';
+          detail.style.opacity = '0';
+        });
+        setTimeout(() => {
+          detail.hidden = true;
+        }, 350);
+      } else {
+        // Open
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        detail.hidden = false;
+        detail.style.maxHeight = '0';
+        detail.style.opacity = '0';
+        requestAnimationFrame(() => {
+          detail.style.maxHeight = detail.scrollHeight + 'px';
+          detail.style.opacity = '1';
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
