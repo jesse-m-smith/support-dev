@@ -248,6 +248,13 @@
       left: 0;
       color: var(--clay-tint);
     }
+     .service-detail-inner p {
+       margin-top: 20px;
+       font-size: 0.9375rem;
+       color: var(--text);
+       position: relative;
+       text-wrap: pretty;
+     }
 
     /* ── Approach section ── */
     .approach-body { font-size: 1.0625rem; }
@@ -472,7 +479,7 @@
     }
     .mobile-menu-links a:hover { color: var(--clay); }
 
-    @media (max-width: 570px) {
+    @media (max-width: 680px) {
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
       .hero { padding: 56px 0 56px; }
