@@ -479,7 +479,7 @@
     }
     .mobile-menu-links a:hover { color: var(--clay); }
 
-    @media (max-width: 680px) {
+    @media (max-width: 700px) {
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
       .hero { padding: 56px 0 56px; }
